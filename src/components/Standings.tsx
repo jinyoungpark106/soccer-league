@@ -49,9 +49,9 @@ const Standings = () => {
         </TableHead>
         <TableBody className="divide-y">
           {
-            standings?.map((standing: StandingsType) => {
+            standings?.map((standing: StandingsType, i: number) => {
               return (
-                <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <TableRow key={i} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <TableCell className="flex content-center">
                     <div className={'w-6 content-center'}>{standing.position}</div>
                     <div className={'w-15 content-center'}><img src={standing.team.crest} alt={standing.team.tla} className={'w-7 h-7'}/></div>
