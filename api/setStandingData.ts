@@ -3,7 +3,7 @@ import { db } from "./firebaseAdmin";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    let data = {standings: [{table: []}]}, standingData = {detail: []};
+    let data = {standings: [{table: []}]}, standingData = {detail: [], updated: null};
     try {
       const response = await fetch(
         "https://api.football-data.org/v4/competitions/PL/standings",
@@ -21,10 +21,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       data = await response.json();
 
       if (data?.standings?.length > 0) {
-        standingData = {detail: data.standings[0].table};
+        standingData = {detail: data.standings[0].table, updated: new Date()};
         // res.status(200).json({message: "Football data called successfully"});
       }
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({error2: error.message});
     }
 

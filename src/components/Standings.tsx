@@ -29,7 +29,8 @@ const Standings = () => {
   const [standings, setStandings] = useState<Array<StandingsType>>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/getStandingData")
+    // fetch("http://localhost:3000/api/getStandingData")
+    fetch("https://soccer-league-eta.vercel.app/api/setStandingData")
       .then(res => res.json())
       .then((data: StandingsResponse) => setStandings(data.detail));
   }, []);
