@@ -30,7 +30,7 @@ const Standings = () => {
 
   useEffect(() => {
     // fetch("http://localhost:3000/api/getStandingData")
-    fetch("https://soccer-league-eta.vercel.app/api/setStandingData")
+    fetch("https://soccer-league-nine.vercel.app/api/getStandingData")
       .then(res => res.json())
       .then((data: StandingsResponse) => setStandings(data.detail));
   }, []);

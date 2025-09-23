@@ -19,7 +19,7 @@ const Matches = () => {
   const [selectedTeam, setSelectedTeam] = useState('liverpool');
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/getMatchData")
+    fetch("https://soccer-league-nine.vercel.app/api/getMatchData")
       .then(res => res.json())
       .then(data => console.log(data));
   }, []);
