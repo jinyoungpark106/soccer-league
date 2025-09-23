@@ -21,11 +21,17 @@ type StandingsType = {
   },
 };
 
-const Tables = () => {
+type StandingsResponse = {
+  detail: StandingsType[];
+};
+
+const Standings = () => {
   const [standings, setStandings] = useState<Array<StandingsType>>([]);
 
   useEffect(() => {
-
+    fetch("http://localhost:3000/api/getStandingData")
+      .then(res => res.json())
+      .then((data: StandingsResponse) => setStandings(data.detail));
   }, []);
 
   return (
@@ -66,4 +72,4 @@ const Tables = () => {
   );
 };
 
-export default Tables;
+export default Standings;

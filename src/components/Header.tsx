@@ -41,7 +41,7 @@ export function Header() {
       {/* Desktop Navigation */}
       <NavbarCollapse className={'justify-items-center flex-1 mr-50 hidden'}>
         <NavbarLink href="/" active><span className={'pr-20'}>MATCHES</span></NavbarLink>
-        <NavbarLink href="/tables"><span className={'pr-20'}>TABLE</span></NavbarLink>
+        <NavbarLink href="/standings"><span className={'pr-20'}>TABLE</span></NavbarLink>
         <NavbarLink href="/stats"><span className={'pr-20'}>STATS</span></NavbarLink>
         <NavbarLink href="/players">PLAYERS</NavbarLink>
       </NavbarCollapse>
