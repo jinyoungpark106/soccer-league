@@ -24,7 +24,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const matchData = {detail: data, updated: new Date()};
 
-    if (matchData.detail && matchData.detail.length > 0) {
+    if (matchData.detail.matches && matchData.detail.matches.length > 0) {
       const docRef = db.collection("premier-league")
         .doc("2025-2026")
         .collection("matches")
