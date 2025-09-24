@@ -1,6 +1,6 @@
 export const menuItems = [
-  {label: 'MATCHES', link: '/'},
-  {label: 'TABLE', link: '/tables'},
+  {label: 'MATCHES', link: '/matches'},
+  {label: 'STANDINGS', link: '/standings'},
   {label: 'STATS', link: '/stats'},
   {label: 'PLAYERS', link: '/players'},
 ];

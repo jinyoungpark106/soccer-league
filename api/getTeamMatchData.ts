@@ -2,12 +2,12 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { db } from "./firebaseAdmin.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // const teamId = req.teamId;
+  const { teamCode } = req.query as { teamCode?: string };
   try {
     const docRef = db.collection("premier-league")
       .doc("2025-2026")
       .collection("team")
-      .doc('liverpool');
+      .doc(teamCode);
 
     const docSnap = await docRef.get();
 

@@ -14,6 +14,7 @@ function App() {
       <div className={'flex justify-center min-h-screen'} style={{backgroundColor: '#181818'}}>
         <Routes>
           <Route path={'/'} element={<Matches/>}/>
+          <Route path={'/matches'} element={<Matches/>}/>
           <Route path={'standings'} element={<Standings/>}/>
           <Route path={'stats'} element={<Stats/>}/>
           <Route path={'players'} element={<Players/>}/>

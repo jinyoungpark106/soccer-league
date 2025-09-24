@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 
 type StandingsType = {
@@ -29,8 +30,8 @@ const Standings = () => {
   const [standings, setStandings] = useState<Array<StandingsType>>([]);
 
   useEffect(() => {
-    // fetch("http://localhost:3000/api/getStandingData")
-    fetch("https://soccer-league-nine.vercel.app/api/getStandingData")
+    fetch("http://localhost:3000/api/getStandingData")
+    // fetch("https://soccer-league-nine.vercel.app/api/getStandingData")
       .then(res => res.json())
       .then((data: StandingsResponse) => setStandings(data.detail));
   }, []);
@@ -56,7 +57,7 @@ const Standings = () => {
                   <TableCell className="flex content-center">
                     <div className={'w-6 content-center'}>{standing.position}</div>
                     <div className={'w-15 content-center'}><img src={standing.team.crest} alt={standing.team.tla} className={'w-7 h-7'}/></div>
-                    <div className="w-25 content-center font-medium dark:text-white">{standing.team.shortName}</div>
+                    <div className="w-25 content-center font-medium dark:text-white"><Link to={`/teamMatches?teamCode=${standing.team.tla}`}>{standing.team.shortName}</Link></div>
                   </TableCell>
                   <TableCell className="font-medium dark:text-white">{standing.points}</TableCell>
                   <TableCell>{standing.won}</TableCell>

@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from "react"
 import { Navbar, NavbarCollapse, NavbarLink } from "flowbite-react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import {menuItems} from "../utils/helper";
 
 export function Header() {
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -33,17 +34,17 @@ export function Header() {
 
   return (
     <Navbar fluid rounded className={'h-20'} style={{backgroundColor: '#3f1052'}}>
-      <div className={'flex'}>
+      <Link to="/" className={'flex'}>
         <img src={'/images/premier-league.png'} alt={'Premier League'}/>
-        <div className={'content-center'}>Premier League</div>
-      </div>
+        <div className={'text-xl content-center'}>Premier League</div>
+      </Link>
 
       {/* Desktop Navigation */}
       <NavbarCollapse className={'justify-items-center flex-1 mr-50 hidden'}>
-        <NavbarLink href="/" active><span className={'pr-20'}>MATCHES</span></NavbarLink>
-        <NavbarLink href="/standings"><span className={'pr-20'}>TABLE</span></NavbarLink>
-        <NavbarLink href="/stats"><span className={'pr-20'}>STATS</span></NavbarLink>
-        <NavbarLink href="/players">PLAYERS</NavbarLink>
+        <NavbarLink href="/matches" active={location.pathname === "/matches" || location.pathname === "/"}><span className={'pr-20'}>MATCHES</span></NavbarLink>
+        <NavbarLink href="/standings" active={location.pathname === "/standings"}><span className={'pr-20'}>STANDINGS</span></NavbarLink>
+        <NavbarLink href="/stats" active={location.pathname === "/stats"}><span className={'pr-20'}>STATS</span></NavbarLink>
+        <NavbarLink href="/players" active={location.pathname === "/players"}>PLAYERS</NavbarLink>
       </NavbarCollapse>
 
       {/* Mobile Menu Button */}

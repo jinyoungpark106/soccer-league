@@ -4,30 +4,29 @@ import { db } from "./firebaseAdmin.js";
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const teamMap = {
-      arsenal: 57,
-      aston_villa: 58,
-      bournemouth: 1044,
-      brentford: 402,
-      brighton: 397,
-      burnley: 328,
-      chelsea: 61,
-      crystal_palace: 354,
-      everton: 62,
-      fulham: 63,
-      leeds: 341,
-      liverpool: 64,
-      man_city: 65,
-      man_utd: 66,
-      newcastle: 67,
-      nottm_forest: 351,
-      sunderland: 71,
-      tottenham: 73,
-      west_ham: 563,
-      wolves: 76,
+      ARS: 57,
+      AVL: 58,
+      BOU: 1044,
+      BRE: 402,
+      BHA: 397,
+      BUR: 328,
+      CHE: 61,
+      CRY: 354,
+      EVE: 62,
+      FUL: 63,
+      LEE: 341,
+      LIV: 64,
+      MCI: 65,
+      MUN: 66,
+      NEW: 67,
+      NOT: 351,
+      SUN: 71,
+      TOT: 73,
+      WHU: 563,
+      WOL: 76,
     };
 
     Object.entries(teamMap).map(async ([team, id]) => {
-      console.log("key:", team, "value:", id);
       const response = await fetch(
         `https://api.football-data.org/v4/teams/${id}/matches`,
         {
@@ -38,31 +37,29 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       );
 
       if (!response.ok) {
-        return res.status(response.status).json({error1: await response.text()});
+        console.log('team1: ', team);
+        throw new Error(`API error for ${team}: ${response.status}`);
       }
 
       const data = await response.json();
 
       if (!data?.matches?.length) {
-        return res.status(204).json({ message: "No match data to save" });
+        console.log('team2: ', team);
+        return;
       }
 
       const matchData = {detail: data, updated: new Date()};
+      const cleanData = JSON.parse(JSON.stringify(matchData));
 
-      if (matchData.detail && matchData.detail.matches?.length > 0) {
-        const docRef = db.collection("premier-league")
-          .doc("2025-2026")
-          .collection("team")
-          .doc(team);
+      const docRef = db.collection("premier-league")
+        .doc("2025-2026")
+        .collection("team")
+        .doc(team);
 
-        const cleanData = JSON.parse(JSON.stringify(matchData));
-        await docRef.set(cleanData);
-
-        return res.status(200).json({ message: "Data saved successfully" });
-      } else {
-        return res.status(204).json({ message: "No match data to save" });
-      }
+      await docRef.set(cleanData);
+      console.log('team3: ', team);
     });
+    // return res.status(200).json({ message: "Data saved successfully" });
   } catch (error) {
     console.error("Error saving matches:", error);
     return res.status(500).json({ message: "Internal Server Error", error: error.message });
