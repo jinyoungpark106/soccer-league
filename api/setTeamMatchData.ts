@@ -26,40 +26,40 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       WOL: 76,
     };
 
-    Object.entries(teamMap).map(async ([team, id]) => {
-      const response = await fetch(
-        `https://api.football-data.org/v4/teams/${id}/matches`,
-        {
-          headers: {
-            "X-Auth-Token": process.env.FOOTBALL_DATA_API_KEY || "",
-          },
+    Object.entries(teamMap).map(([team, id]) => {
+      setTimeout(async () => {
+        const response = await fetch(
+          `https://api.football-data.org/v4/teams/${id}/matches`,
+          {
+            headers: {
+              "X-Auth-Token": process.env.FOOTBALL_DATA_API_KEY || "",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          console.log('team1: ', team);
+          throw new Error(`API error for ${team}: ${response.status}`);
         }
-      );
 
-      if (!response.ok) {
-        console.log('team1: ', team);
-        throw new Error(`API error for ${team}: ${response.status}`);
-      }
+        const data = await response.json();
 
-      const data = await response.json();
+        if (!data?.matches?.length) {
+          return;
+        }
 
-      if (!data?.matches?.length) {
-        console.log('team2: ', team);
-        return;
-      }
+        const matchData = {detail: data, updated: new Date()};
+        const cleanData = JSON.parse(JSON.stringify(matchData));
 
-      const matchData = {detail: data, updated: new Date()};
-      const cleanData = JSON.parse(JSON.stringify(matchData));
+        const docRef = db.collection("premier-league")
+          .doc("2025-2026")
+          .collection("team")
+          .doc(team);
 
-      const docRef = db.collection("premier-league")
-        .doc("2025-2026")
-        .collection("team")
-        .doc(team);
-
-      await docRef.set(cleanData);
-      console.log('team3: ', team);
+        await docRef.set(cleanData);
+      }, 100);
     });
-    // return res.status(200).json({ message: "Data saved successfully" });
+    return res.status(200).json({ message: "Data saved successfully" });
   } catch (error) {
     console.error("Error saving matches:", error);
     return res.status(500).json({ message: "Internal Server Error", error: error.message });

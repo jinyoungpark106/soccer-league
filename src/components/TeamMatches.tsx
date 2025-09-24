@@ -2,8 +2,17 @@ import {useState, useEffect} from "react";
 import { useSearchParams } from "react-router-dom";
 import { Card } from "flowbite-react";
 
+type MatchType = {
+  awayTeam: {crest: string, shortName: string, tla: string},
+  competition: {name: string},
+  homeTeam: {crest: string, shortName: string, tla: string},
+  matchday: number,
+  score: {fullTime: {away: number, home: number}},
+  utcDate: Date,
+};
+
 const TeamMatches = () => {
-  const [matches, setMatches] = useState([]);
+  const [matches, setMatches] = useState<Array<MatchType>>([]);
   const [searchParams] = useSearchParams();
   const teamCode = searchParams.get("teamCode");
 
@@ -19,7 +28,7 @@ const TeamMatches = () => {
 
   return (
     <div className="min-h-screen p-4">
-      {matches.map((match, i) => {
+      {matches.map((match: MatchType, i: number) => {
         const matchDate = new Date(match.utcDate).toLocaleString();
         return (
           <Card key={i} href="#" className="w-96 h-35 max-w-sm mt-2">
