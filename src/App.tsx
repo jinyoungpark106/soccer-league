@@ -5,6 +5,7 @@ import Matches from "./components/Matches";
 import Standings from "./components/Standings";
 import Stats from "./components/Stats";
 import Players from "./components/Players";
+import TeamMatches from "./components/TeamMatches.tsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path={'standings'} element={<Standings/>}/>
           <Route path={'stats'} element={<Stats/>}/>
           <Route path={'players'} element={<Players/>}/>
+          <Route path={'teamMatches'} element={<TeamMatches/>}/>
         </Routes>
       </div>
     </div>
