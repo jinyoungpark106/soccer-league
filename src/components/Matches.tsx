@@ -28,7 +28,7 @@ const TeamMatches = () => {
 
   return (
     <div className="min-h-screen p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2">
         {matches.map((match: MatchType, i: number) => {
           const matchDate = new Date(match.utcDate).toLocaleString();
           const showRound = !printedRounds.has(match.matchday);
@@ -39,8 +39,8 @@ const TeamMatches = () => {
 
           return (
             <div key={i}>
-              {showRound ? <div className="font-bold mt-4">ROUND {match.matchday}</div> : i%10 === 1 && <div className="h-10"/>}
-              <Card href="#" className="w-96 h-35 max-w-sm mt-2">
+              {showRound ? <div className="font-bold mt-4">ROUND {match.matchday}</div> : i%10 === 1 && <div className="hidden md:block h-10"/>}
+              <Card href="#" className="w-90 h-35 max-w-sm mt-2 ml-1 mr-1">
                 <div className="mb-4 flex items-center justify-between">
                   <div className="flex flex-2 flex-col gap-1">
                     <div className={'flex'}>

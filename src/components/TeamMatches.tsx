@@ -30,7 +30,7 @@ const TeamMatches = () => {
       {matches.map((match: MatchType, i: number) => {
         const matchDate = new Date(match.utcDate).toLocaleString();
         return (
-          <Card key={i} href="#" className="w-96 h-35 max-w-sm mt-2">
+          <Card key={i} href="#" className="w-90 h-35 max-w-sm mt-2">
             <div className={'flex justify-between items-center'}>
               <div>ROUND {match.matchday}</div>
               <div>{match.competition.name}</div>

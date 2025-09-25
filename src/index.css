@@ -1,3 +1,15 @@
 @import "tailwindcss";
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
+}
