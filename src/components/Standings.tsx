@@ -30,8 +30,8 @@ const Standings = () => {
   const [standings, setStandings] = useState<Array<StandingsType>>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/getStandingData")
-    // fetch("https://soccer-league-nine.vercel.app/api/getStandingData")
+    // fetch("http://localhost:3000/api/getStandingData")
+    fetch("https://soccer-league-nine.vercel.app/api/getStandingData")
       .then(res => res.json())
       .then((data: StandingsResponse) => setStandings(data.detail));
   }, []);

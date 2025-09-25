@@ -17,8 +17,8 @@ const TeamMatches = () => {
   const teamCode = searchParams.get("teamCode");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/getTeamMatchData?teamCode=${teamCode}`)
-    // fetch(`https://soccer-league-nine.vercel.app/api/getTeamMatchData?teamCode=${teamCode}`)
+    // fetch(`http://localhost:3000/api/getTeamMatchData?teamCode=${teamCode}`)
+    fetch(`https://soccer-league-nine.vercel.app/api/getTeamMatchData?teamCode=${teamCode}`)
       .then(res => res.json())
       .then(data => {
         console.log(data.detail.matches);

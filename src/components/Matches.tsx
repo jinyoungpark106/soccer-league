@@ -18,8 +18,8 @@ const TeamMatches = () => {
   const printedRounds = new Set<number>();
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/getMatchData')
-      // fetch('https://soccer-league-nine.vercel.app/api/getMatchData')
+    // fetch('http://localhost:3000/api/getMatchData')
+      fetch('https://soccer-league-nine.vercel.app/api/getMatchData')
       .then(res => res.json())
       .then(data => {
         console.log(data.detail.matches);
