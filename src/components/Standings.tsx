@@ -37,9 +37,9 @@ const Standings = () => {
   }, []);
 
   return (
-    <div className="overflow-x-auto mt-10 mb-10">
-      <Table className={"bg-gray-800"}>
-        <TableHead>
+    <div className="overflow-x-auto mt-10 mb-10 bg-gray-800">
+      <Table>
+        <TableHead className="bg-gray-700">
           <TableRow>
             <TableHeadCell>Club</TableHeadCell>
             <TableHeadCell className="font-medium dark:text-white">PTS</TableHeadCell>
@@ -49,21 +49,21 @@ const Standings = () => {
             <TableHeadCell>GD</TableHeadCell>
           </TableRow>
         </TableHead>
-        <TableBody className="divide-y">
+        <TableBody className="divide-y !bg-gray-800">
           {
             standings?.map((standing: StandingsType, i: number) => {
               return (
-                <TableRow key={i} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <TableCell className="flex content-center">
+                <TableRow key={i} className="!bg-gray-800 border-gray-700">
+                  <TableCell className="flex content-center text-white">
                     <div className={'w-6 content-center'}>{standing.position}</div>
                     <div className={'w-15 content-center'}><img src={standing.team.crest} alt={standing.team.tla} className={'w-7 h-7'}/></div>
                     <div className="w-25 content-center font-medium dark:text-white"><Link to={`/teamMatches?teamCode=${standing.team.tla}`}>{standing.team.shortName}</Link></div>
                   </TableCell>
-                  <TableCell className="font-medium dark:text-white">{standing.points}</TableCell>
-                  <TableCell>{standing.won}</TableCell>
-                  <TableCell>{standing.draw}</TableCell>
-                  <TableCell>{standing.lost}</TableCell>
-                  <TableCell>{standing.goalDifference}</TableCell>
+                  <TableCell className="font-medium text-white">{standing.points}</TableCell>
+                  <TableCell className="text-white">{standing.won}</TableCell>
+                  <TableCell className="text-white">{standing.draw}</TableCell>
+                  <TableCell className="text-white">{standing.lost}</TableCell>
+                  <TableCell className="text-white">{standing.goalDifference}</TableCell>
                 </TableRow>
               );
             })

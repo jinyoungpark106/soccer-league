@@ -1,6 +1,6 @@
 const Players = () => {
   return (
-    <div>
+    <div className="min-h-screen p-4">
       Players
     </div>
   );
