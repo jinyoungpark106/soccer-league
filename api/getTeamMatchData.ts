@@ -2,6 +2,10 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { db } from "./firebaseAdmin.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://football-league-info.web.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
   const { teamCode } = req.query as { teamCode?: string };
   try {
     const docRef = db.collection("premier-league")
@@ -16,9 +20,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const data = docSnap.data();
-    // const detail = data.detail;
-
-    // res.status(200).json({data});
     res.status(200).send(JSON.stringify(data));
   } catch (error) {
     console.error("Firebase fetch error:", error.message);

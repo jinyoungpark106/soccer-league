@@ -22,7 +22,6 @@ const TeamMatches = () => {
       fetch('https://soccer-league-nine.vercel.app/api/getMatchData')
       .then(res => res.json())
       .then(data => {
-        console.log(data.detail.matches);
         setMatches(data?.detail?.matches ?? []);
       });
   }, [teamCode]);
