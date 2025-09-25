@@ -10,8 +10,8 @@ import TeamMatches from "./components/TeamMatches.tsx";
 function App() {
   return (
     <div className={'text-white'}>
-      <Header />
-      <div className={'flex justify-center min-h-screen'} style={{backgroundColor: '#181818'}}>
+      <div className={'fixed top-0 left-0 right-0 z-50'}><Header /></div>
+      <div className={'flex flex-1 pt-16 overflow-y-auto justify-center min-h-screen'} style={{backgroundColor: '#181818'}}>
         <Routes>
           <Route path={'/'} element={<Matches/>}/>
           <Route path={'/matches'} element={<Matches/>}/>

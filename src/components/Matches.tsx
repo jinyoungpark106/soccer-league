@@ -40,7 +40,7 @@ const TeamMatches = () => {
           return (
             <div key={i}>
               {showRound ? <div className="font-bold mt-4">ROUND {match.matchday}</div> : i%10 === 1 && <div className="hidden md:block h-10"/>}
-              <Card href="#" className="w-90 h-35 max-w-sm mt-2 ml-1 mr-1">
+              <Card href="#" className="bg-gray-800 w-90 h-35 max-w-sm mt-2 ml-1 mr-1">
                 <div className="mb-4 flex items-center justify-between">
                   <div className="flex flex-2 flex-col gap-1">
                     <div className={'flex'}>

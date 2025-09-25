@@ -37,8 +37,8 @@ const Standings = () => {
   }, []);
 
   return (
-    <div className="overflow-x-auto mt-10 mb-20">
-      <Table>
+    <div className="overflow-x-auto mt-10 mb-10">
+      <Table className={"bg-gray-800"}>
         <TableHead>
           <TableRow>
             <TableHeadCell>Club</TableHeadCell>
