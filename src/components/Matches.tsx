@@ -16,10 +16,10 @@ const TeamMatches = () => {
   const [searchParams] = useSearchParams();
   const teamCode = searchParams.get("teamCode");
   const printedRounds = new Set<number>();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    // fetch('http://localhost:3000/api/getMatchData')
-      fetch('https://soccer-league-nine.vercel.app/api/getMatchData')
+      fetch(`${apiUrl}/api/getMatchData`)
       .then(res => res.json())
       .then(data => {
         setMatches(data?.detail?.matches ?? []);

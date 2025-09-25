@@ -28,10 +28,10 @@ type StandingsResponse = {
 
 const Standings = () => {
   const [standings, setStandings] = useState<Array<StandingsType>>([]);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    // fetch("http://localhost:3000/api/getStandingData")
-    fetch("https://soccer-league-nine.vercel.app/api/getStandingData")
+    fetch(`${apiUrl}/api/getStandingData`)
       .then(res => res.json())
       .then((data: StandingsResponse) => setStandings(data.detail));
   }, []);
