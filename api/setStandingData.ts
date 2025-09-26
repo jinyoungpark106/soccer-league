@@ -1,44 +1,19 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { db } from "./firebaseAdmin.js";
+import { fetchFromAPI, setFirestoreData, handleError } from "./firebaseHelper.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    const response = await fetch(
-      "https://api.football-data.org/v4/competitions/PL/standings",
-      {
-        headers: {
-          "X-Auth-Token": process.env.FOOTBALL_DATA_API_KEY || "",
-        },
-      }
-    );
-
-    if (!response.ok) {
-      return res.status(response.status).json({error1: await response.text()});
-    }
-
-    const data = await response.json();
+    const data = await fetchFromAPI("https://api.football-data.org/v4/competitions/PL/standings");
 
     if (!data?.standings?.length) {
       return res.status(204).json({ message: "No standings data to save" });
     }
 
-    const standingData = {detail: data.standings[0].table, updated: new Date()};
+    const standingData = { detail: data.standings[0].table, updated: new Date() };
+    await setFirestoreData(["premier-league", "2025-2026", "standings", "table"], standingData);
 
-    if (standingData.detail && standingData.detail.length > 0) {
-      const docRef = db.collection("premier-league")
-        .doc("2025-2026")
-        .collection("standings")
-        .doc("table");
-
-      const cleanData = JSON.parse(JSON.stringify(standingData));
-      await docRef.set(cleanData);
-
-      return res.status(200).json({ message: "Data saved successfully" });
-    } else {
-      return res.status(204).json({ message: "No standings data to save" });
-    }
+    return res.status(200).json({ message: "Data saved successfully" });
   } catch (error) {
-    console.error("Error saving standings:", error);
-    return res.status(500).json({ message: "Internal Server Error", error: error.message });
+    return handleError(res, error);
   }
 }

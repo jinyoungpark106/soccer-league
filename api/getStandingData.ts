@@ -1,27 +1,11 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { db } from "./firebaseAdmin.js";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import {getFirestoreData, handleError, setCORSHeaders} from "./firebaseHelper.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://football-league-info.web.app');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
   try {
-    const docRef = db.collection("premier-league")
-      .doc("2025-2026")
-      .collection("standings")
-      .doc("table");
-
-    const docSnap = await docRef.get();
-
-    if (!docSnap.exists) {
-      return res.status(404).json({error: "Document not found"});
-    }
-
-    const data = docSnap.data();
-    res.status(200).send(JSON.stringify(data));
+    setCORSHeaders(res);
+    await getFirestoreData(["premier-league", "2025-2026", "standings", "table"], res);
   } catch (error) {
-    console.error("Firebase fetch error:", error.message);
-    res.status(500).json({ error: "Internal Server Error", message: error.message });
+    return handleError(res, error);
   }
 }
