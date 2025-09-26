@@ -12,7 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const standingData = { standingData: data.standings[0].table, standingUpdated: new Date() };
     await setFirestoreData(["premier-league", "2025-2026", "standings", "standing"], standingData);
 
-    return res.status(200).json({ message: "Data saved successfully" });
+    return res.status(200).json({ message: "Standing data saved successfully" });
   } catch (error) {
     return handleError(res, error);
   }

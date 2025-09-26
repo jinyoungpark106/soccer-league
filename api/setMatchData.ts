@@ -12,7 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const matchData = { matchData: data, matchUpdated: new Date() };
     await setFirestoreData(["premier-league", "2025-2026", "matches", "match"], matchData);
 
-    return res.status(200).json({ message: "Data saved successfully" });
+    return res.status(200).json({ message: "Match data saved successfully" });
   } catch (error) {
     return handleError(res, error);
   }

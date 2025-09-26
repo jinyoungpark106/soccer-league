@@ -34,7 +34,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     return res.status(200).json({
-      message: "Data saved successfully",
+      message: "Team match data saved successfully",
       successCount,
       failCount: failedTeams.length,
     });
