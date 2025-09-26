@@ -23,7 +23,7 @@ type StandingsType = {
 };
 
 type StandingsResponse = {
-  detail: StandingsType[];
+  standingData: StandingsType[];
 };
 
 const Standings = () => {
@@ -33,7 +33,7 @@ const Standings = () => {
   useEffect(() => {
     fetch(`${apiUrl}/api/getStandingData`)
       .then(res => res.json())
-      .then((data: StandingsResponse) => setStandings(data.detail));
+      .then((data: StandingsResponse) => setStandings(data.standingData));
   }, []);
 
   return (

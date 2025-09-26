@@ -17,7 +17,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         throw new Error(`No matches for ${team}`);
       }
 
-      const matchData = { detail: data, updated: new Date() };
+      const matchData = { matchData: data, matchUpdated: new Date() };
       await setFirestoreData(["premier-league", "2025-2026", "team", team], matchData);
       return team;
     });

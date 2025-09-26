@@ -21,7 +21,7 @@ const TeamMatches = () => {
     fetch(`${apiUrl}/api/getTeamMatchData?teamCode=${teamCode}`)
       .then(res => res.json())
       .then(data => {
-        setMatches(data?.detail?.matches ?? []);
+        setMatches(data?.matchData?.matches ?? []);
       });
   }, [teamCode]);
 

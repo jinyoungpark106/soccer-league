@@ -9,7 +9,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(204).json({ message: "No match data to save" });
     }
 
-    const matchData = { detail: data, updated: new Date() };
+    const matchData = { matchData: data, matchUpdated: new Date() };
     await setFirestoreData(["premier-league", "2025-2026", "matches", "match"], matchData);
 
     return res.status(200).json({ message: "Data saved successfully" });

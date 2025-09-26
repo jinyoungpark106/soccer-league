@@ -22,7 +22,7 @@ const TeamMatches = () => {
       fetch(`${apiUrl}/api/getMatchData`)
       .then(res => res.json())
       .then(data => {
-        setMatches(data?.detail?.matches ?? []);
+        setMatches(data?.matchData?.matches ?? []);
       });
   }, [teamCode]);
 
@@ -45,12 +45,12 @@ const TeamMatches = () => {
                   <div className="flex flex-2 flex-col gap-1">
                     <div className={'flex'}>
                       <img src={match.homeTeam.crest} alt={match.homeTeam.tla} className={'w-7 h-7 mr-2'}/>
-                      <div className={'flex-2'}>{match.homeTeam.shortName}</div>
+                      <div className={'flex-3'}>{match.homeTeam.shortName}</div>
                       <div className={'flex-1 items-end'}>{match.score.fullTime.home}</div>
                     </div>
                     <div className={'flex'}>
                       <img src={match.awayTeam.crest} alt={match.awayTeam.tla} className={'w-7 h-7 mr-2'}/>
-                      <div className={'flex-2'}>{match.awayTeam.shortName}</div>
+                      <div className={'flex-3'}>{match.awayTeam.shortName}</div>
                       <div className={'flex-1 items-end'}>{match.score.fullTime.away}</div>
                     </div>
                   </div>
