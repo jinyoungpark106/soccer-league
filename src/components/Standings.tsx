@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
+import {apiUrl} from "../utils/helper.ts";
 
 type StandingsType = {
   draw: number,
@@ -28,7 +29,6 @@ type StandingsResponse = {
 
 const Standings = () => {
   const [standings, setStandings] = useState<Array<StandingsType>>([]);
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetch(`${apiUrl}/api/getStandingData`)

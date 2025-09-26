@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import { useSearchParams } from "react-router-dom";
 import { Card } from "flowbite-react";
+import {apiUrl} from "../utils/helper.ts";
 
 type MatchType = {
   awayTeam: {crest: string, shortName: string, tla: string},
@@ -16,7 +17,6 @@ const TeamMatches = () => {
   const [searchParams] = useSearchParams();
   const teamCode = searchParams.get("teamCode");
   const printedRounds = new Set<number>();
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
       fetch(`${apiUrl}/api/getMatchData`)
