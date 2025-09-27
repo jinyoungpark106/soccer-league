@@ -4,7 +4,7 @@ import {Header} from "./components/Header";
 import Matches from "./components/Matches";
 import Standings from "./components/Standings";
 import Stats from "./components/Stats";
-import Players from "./components/Players";
+import Teams from "./components/Teams.tsx";
 import TeamMatches from "./components/TeamMatches.tsx";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
           <Route path={'/matches'} element={<Matches/>}/>
           <Route path={'standings'} element={<Standings/>}/>
           <Route path={'stats'} element={<Stats/>}/>
-          <Route path={'players'} element={<Players/>}/>
+          <Route path={'teams'} element={<Teams/>}/>
           <Route path={'teamMatches'} element={<TeamMatches/>}/>
         </Routes>
       </div>

@@ -1,9 +1,9 @@
-const Players = () => {
+const Teams = () => {
   return (
     <div className="min-h-screen p-4">
-      Players
+      Teams
     </div>
   );
 };
 
-export default Players;
+export default Teams;

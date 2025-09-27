@@ -18,7 +18,6 @@ const Stats = () => {
     fetch(`${apiUrl}/api/getStatData`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setScorers(data?.statData?.scorers?? []);
       });
   }, []);
@@ -42,7 +41,7 @@ const Stats = () => {
               currentNoRef.current = preGoalRef.current === scorer.goals ? currentNoRef.current : i + 1;
               preGoalRef.current = scorer.goals;
               return (
-                <li className="py-3 sm:py-4">
+                <li key={i} className="py-3 sm:py-4">
                   <div className="flex items-center space-x-4 justify-between">
                     <div className={'flex flex-2'}>
                       <div className="flex items-center">{currentNoRef.current}</div>

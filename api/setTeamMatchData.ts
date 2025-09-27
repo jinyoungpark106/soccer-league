@@ -18,7 +18,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
 
       const matchData = { matchData: data, matchUpdated: new Date() };
-      await setFirestoreData(["premier-league", "2025-2026", "teams", team], matchData);
+      await setFirestoreData(["premier-league", "2025-2026", "teamMatches", team], matchData);
       return team;
     });
 
