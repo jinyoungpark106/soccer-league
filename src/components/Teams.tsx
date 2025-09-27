@@ -1,8 +1,10 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
 import {apiUrl} from "../utils/helper.ts";
 
-type TeamType = {
+export type TeamType = {
+  id: number
   coach: {name: string},
   crest: string,
   founded: {crest: string, shortName: string, tla: string},
@@ -22,6 +24,14 @@ type SquadType = {
 
 const Teams = () => {
   const [teams, setTeams] = useState<Array<TeamType>>([]);
+  const navigate = useNavigate();
+
+  const onClickTeam = (e: React.MouseEvent<HTMLDivElement>, id: number) => {
+    e.preventDefault();
+    console.log(e, id);
+    const selectedTeam = teams.filter(team => team.id === id);
+    navigate("/teamInfo", {state: {team: selectedTeam[0]}});
+  };
 
   useEffect(() => {
     fetch(`${apiUrl}/api/getTeamData`)
@@ -38,7 +48,10 @@ const Teams = () => {
         {teams.map((team: TeamType, i: number) => {
           return (
             <div key={i}>
-              <Card href="#" className="flex items-center w-45 h-45 bg-gray-800 max-w-sm mt-1 mb-1 ml-1 mr-1 p-2">
+              <Card
+                onClick={(e) => onClickTeam(e, team.id)}
+                className="flex items-center w-45 h-45 bg-gray-800 max-w-sm mt-1 mb-1 ml-1 mr-1 p-2 cursor-pointer"
+              >
                 <img src={team.crest} alt={team.tla}/>
                 <div className={'flex justify-center'}>{team.shortName}</div>
               </Card>
