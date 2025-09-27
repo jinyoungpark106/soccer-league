@@ -46,6 +46,8 @@ const Standings = () => {
             <TableHeadCell>W</TableHeadCell>
             <TableHeadCell>D</TableHeadCell>
             <TableHeadCell>L</TableHeadCell>
+            <TableHeadCell>GF</TableHeadCell>
+            <TableHeadCell>GA</TableHeadCell>
             <TableHeadCell>GD</TableHeadCell>
           </TableRow>
         </TableHead>
@@ -63,6 +65,8 @@ const Standings = () => {
                   <TableCell className="text-white">{standing.won}</TableCell>
                   <TableCell className="text-white">{standing.draw}</TableCell>
                   <TableCell className="text-white">{standing.lost}</TableCell>
+                  <TableCell className="text-white">{standing.goalsFor}</TableCell>
+                  <TableCell className="text-white">{standing.goalsAgainst}</TableCell>
                   <TableCell className="text-white">{standing.goalDifference}</TableCell>
                 </TableRow>
               );

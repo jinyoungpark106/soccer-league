@@ -24,17 +24,17 @@ const Stats = () => {
 
   return (
     <div className="min-h-screen p-4">
-      <Card className="bg-gray-800 w-90 max-w-sm mt-6 mb-6">
+      <Card className="bg-gray-800 w-90 md:w-2xl mt-6 mb-6">
         <div className="mb-4">
           <h5 className="text-xl font-bold leading-none text-white">Goals</h5>
         </div>
         <div className="flow-root">
           <ul className="divide-y divide-gray-700">
-            <li className="flex justify-between py-3 sm:py-4 text-xs text-gray-400">
-              <div>player</div>
-              <div className={'flex'}>
-                <div className={'flex items-end justify-end'}>goals</div>
-                <div className={'ml-3 flex items-end justify-end'}>assists</div>
+            <li className="flex justify-between py-3 text-xs text-gray-400">
+              <div className={'flex-2'}>player</div>
+              <div className={'flex flex-1'}>
+                <div className={'flex-1 flex justify-end'}>goals</div>
+                <div className={'flex-1 flex justify-end'}>assists</div>
               </div>
             </li>
             {scorers?.map((scorer: ScorerType, i: number) => {
@@ -54,8 +54,8 @@ const Stats = () => {
                       </div>
                     </div>
                     <div className={'flex flex-1 text-base font-semibold text-white'}>
-                      <div className="flex-1 flex items-end justify-end mr-2">{scorer.goals}</div>
-                      <div className="flex-1 flex items-end justify-end">{scorer.assists ?? 0}</div>
+                      <div className="flex-1 flex justify-end pr-1">{scorer.goals}</div>
+                      <div className="flex-1 flex justify-end pr-1">{scorer.assists ?? 0}</div>
                     </div>
                   </div>
                 </li>
