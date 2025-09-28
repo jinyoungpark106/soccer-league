@@ -13,6 +13,7 @@ export type TeamType = {
   squad: Array<SquadType>,
   tla: string,
   venue: string,
+  website: string,
 };
 
 export type SquadType = {
