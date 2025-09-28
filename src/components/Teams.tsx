@@ -4,18 +4,18 @@ import { Card } from "flowbite-react";
 import {apiUrl} from "../utils/helper.ts";
 
 export type TeamType = {
-  id: number
-  coach: {name: string},
+  id: number,
   crest: string,
   founded: {crest: string, shortName: string, tla: string},
   name: string,
   shortName: string,
+  coach: {name: string, nationality: string, dateOfBirth: string},
   squad: Array<SquadType>,
   tla: string,
   venue: string,
 };
 
-type SquadType = {
+export type SquadType = {
   dateOfBirth: string,
   name:string,
   nationality: string,
@@ -50,7 +50,7 @@ const Teams = () => {
             <div key={i}>
               <Card
                 onClick={(e) => onClickTeam(e, team.id)}
-                className="flex items-center w-45 h-45 bg-gray-800 max-w-sm mt-1 mb-1 ml-1 mr-1 p-2 cursor-pointer"
+                className="flex items-center w-43 h-43 bg-gray-800 max-w-sm mt-1 mb-1 ml-1 mr-1 p-2 cursor-pointer"
               >
                 <img src={team.crest} alt={team.tla}/>
                 <div className={'flex justify-center'}>{team.shortName}</div>

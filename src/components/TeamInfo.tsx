@@ -1,5 +1,6 @@
 import { useLocation, Navigate } from "react-router-dom";
 import { Card } from "flowbite-react";
+import type {SquadType} from "./Teams.tsx";
 
 const TeamInfo = () => {
   const location = useLocation();
@@ -11,9 +12,29 @@ const TeamInfo = () => {
 
   return (
     <div className="min-h-screen p-4">
-      <Card className="bg-gray-800 w-96 max-w-sm mt-6 mb-6">
+      <Card className="bg-gray-800 w-90 md:w-2xl mt-6 mb-6 items-center">
         <img src={team.crest} alt={team.tla}/>
         <div className={'flex justify-center text-3xl'}>{team.name}</div>
+        <div className={'flex justify-center text-gray-400'}>{team.venue}</div>
+        <div className="flow-root text-xs text-gray-400">
+          <div className="mt-5"><span>Coach - </span> {team.coach.name}</div>
+          <ul className="divide-y divide-gray-700 mt-5">
+            <li className="py-3">
+              <div>Squad</div>
+            </li>
+            {team?.squad?.map((squad: SquadType, i: number) => {
+              return (
+                <li key={i} className="py-3 sm:py-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-1">{squad.name}</div>
+                    <div className="flex-1">{squad.position}</div>
+                    <div className="flex-1">{squad.dateOfBirth}</div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </Card>
     </div>
   );
