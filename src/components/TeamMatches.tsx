@@ -25,6 +25,10 @@ const TeamMatches = () => {
       });
   }, [teamCode]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen p-4 mt-4">
       <div className="grid grid-cols-1 md:grid-cols-2">

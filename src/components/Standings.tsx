@@ -42,7 +42,8 @@ const Standings = () => {
         <TableHead className="bg-gray-700">
           <TableRow>
             <TableHeadCell>Club</TableHeadCell>
-            <TableHeadCell className="font-medium dark:text-white">PTS</TableHeadCell>
+            <TableHeadCell>MD</TableHeadCell>
+            <TableHeadCell>PTS</TableHeadCell>
             <TableHeadCell>W</TableHeadCell>
             <TableHeadCell>D</TableHeadCell>
             <TableHeadCell>L</TableHeadCell>
@@ -61,7 +62,8 @@ const Standings = () => {
                     <div className={'w-15 content-center'}><img src={standing.team.crest} alt={standing.team.tla} className={'w-7 h-7'}/></div>
                     <div className="w-25 content-center font-medium dark:text-white"><Link to={`/teamMatches?teamCode=${standing.team.tla}`}>{standing.team.shortName}</Link></div>
                   </TableCell>
-                  <TableCell className="font-medium text-white">{standing.points}</TableCell>
+                  <TableCell className="text-white">{standing.playedGames}</TableCell>
+                  <TableCell className="text-white">{standing.points}</TableCell>
                   <TableCell className="text-white">{standing.won}</TableCell>
                   <TableCell className="text-white">{standing.draw}</TableCell>
                   <TableCell className="text-white">{standing.lost}</TableCell>

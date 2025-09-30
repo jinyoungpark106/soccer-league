@@ -51,7 +51,7 @@ const Teams = () => {
             <div key={i}>
               <Card
                 onClick={(e) => onClickTeam(e, team.id)}
-                className="flex items-center w-43 h-43 bg-gray-800 max-w-sm mt-1 mb-1 ml-1 mr-1 p-2 cursor-pointer"
+                className="flex items-center w-43 h-43 bg-gray-800 max-w-sm mt-1 mb-1 ml-1 mr-1 p-2 cursor-pointer hover:bg-gray-700"
               >
                 <img src={team.crest} alt={team.tla}/>
                 <div className={'flex justify-center'}>{team.shortName}</div>
