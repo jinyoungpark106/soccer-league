@@ -33,7 +33,7 @@ const TeamMatches = () => {
             <Card
               key={i}
               onClick={(e) => onClickMatch(e, match.id)}
-              className="bg-gray-800 w-90 h-35 max-w-sm mt-2 ml-1 mr-1"
+              className="bg-gray-800 w-90 h-35 max-w-sm mt-2 ml-1 mr-1 cursor-pointer hover:bg-gray-700"
             >
               <div className={'flex justify-between items-center'}>
                 <div className={'text-gray-400'}>Matchday {match.matchday}</div>
