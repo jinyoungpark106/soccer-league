@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {useLocation, Navigate} from "react-router-dom";
 import { Card } from "flowbite-react";
 import type {SquadType} from "./Teams.tsx";
@@ -10,10 +9,6 @@ const TeamInfo = () => {
   if (!team) {
     return <Navigate to="/teams" replace />;
   }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="min-h-screen p-4">

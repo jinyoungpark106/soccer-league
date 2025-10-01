@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {useLocation, Navigate} from "react-router-dom";
 import { Card } from "flowbite-react";
 import {formatDate} from "../utils/helper.ts";
@@ -23,10 +22,6 @@ const MatchInfo = () => {
   if (!match) {
     return <Navigate to="/matches" replace />;
   }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="min-h-screen p-4 text-[13px] md:text-base">

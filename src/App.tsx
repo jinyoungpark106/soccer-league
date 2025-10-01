@@ -8,10 +8,12 @@ import Teams from "./components/Teams.tsx";
 import TeamMatches from "./components/TeamMatches.tsx";
 import MatchInfo from "./components/MatchInfo.tsx";
 import TeamInfo from "./components/TeamInfo.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 
 function App() {
   return (
     <div className={'text-white'}>
+      <ScrollToTop/>
       <div className={'fixed top-0 left-0 right-0 z-50'}><Header /></div>
       <div className={'flex flex-1 pt-16 overflow-y-auto justify-center min-h-screen'} style={{backgroundColor: '#181818'}}>
         <Routes>
