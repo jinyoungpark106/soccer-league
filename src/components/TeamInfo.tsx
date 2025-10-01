@@ -27,7 +27,11 @@ const TeamInfo = () => {
           </div>
           <div className={'text-center text-gray-400'}>{team.venue}</div>
           <div className="flow-root text-xs text-gray-400 mt-5 w-full">
-            <div className="mt-5"><span>Coach - </span> {team.coach.name}</div>
+            <ul className="list-disc pl-5 mt-5">
+              <li>
+                <span>Coach - </span>{team.coach.name}
+              </li>
+            </ul>
             <ul className="divide-y divide-gray-700 mt-5">
               <li className="py-3">
                 <div>Squad</div>

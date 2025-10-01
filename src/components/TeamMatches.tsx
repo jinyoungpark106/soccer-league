@@ -1,21 +1,20 @@
-import {useState, useEffect} from "react";
-import { useSearchParams } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import { Card } from "flowbite-react";
-import {apiUrl} from "../utils/helper.ts";
-
-type MatchType = {
-  awayTeam: {crest: string, shortName: string, tla: string},
-  competition: {name: string, code: string},
-  homeTeam: {crest: string, shortName: string, tla: string},
-  matchday: number,
-  score: {fullTime: {away: number, home: number}},
-  utcDate: Date,
-};
+import {apiUrl, formatDate} from "../utils/helper.ts";
+import type {MatchType} from "./Matches.tsx";
 
 const TeamMatches = () => {
   const [matches, setMatches] = useState<Array<MatchType>>([]);
   const [searchParams] = useSearchParams();
   const teamCode = searchParams.get("teamCode");
+  const navigate = useNavigate();
+
+  const onClickMatch = (e: React.MouseEvent<HTMLDivElement>, id: number) => {
+    e.preventDefault();
+    const selectedMatch = matches.filter(match => match.id === id);
+    navigate("/matchInfo", {state: {match: selectedMatch[0]}});
+  };
 
   useEffect(() => {
     fetch(`${apiUrl}/api/getTeamMatchData?teamCode=${teamCode}`)
@@ -33,12 +32,16 @@ const TeamMatches = () => {
     <div className="min-h-screen p-4 mt-4">
       <div className="grid grid-cols-1 md:grid-cols-2">
         {matches.map((match: MatchType, i: number) => {
-          const matchDate = new Date(match.utcDate).toLocaleString();
+          const matchDate = formatDate(match.utcDate);
           return (
-            <Card key={i} href="#" className="bg-gray-800 w-90 h-35 max-w-sm mt-2 ml-1 mr-1">
+            <Card
+              key={i}
+              onClick={(e) => onClickMatch(e, match.id)}
+              className="bg-gray-800 w-90 h-35 max-w-sm mt-2 ml-1 mr-1"
+            >
               <div className={'flex justify-between items-center'}>
-                <div>ROUND {match.matchday}</div>
-                <div>{match.competition.name}</div>
+                <div className={'text-gray-400'}>Matchday {match.matchday}</div>
+                <div className={'text-sm text-gray-400'}>{match.competition.name}</div>
               </div>
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex flex-2 flex-col gap-1">
@@ -53,7 +56,7 @@ const TeamMatches = () => {
                     <div className={'flex-1 items-end'}>{match.score.fullTime.away}</div>
                   </div>
                 </div>
-                <div className="flex-1 text-sm font-medium">{matchDate}</div>
+                <div className="flex-1 text-xs font-medium">{matchDate}</div>
               </div>
             </Card>
           );

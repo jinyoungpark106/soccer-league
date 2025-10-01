@@ -6,6 +6,7 @@ import Standings from "./components/Standings";
 import Stats from "./components/Stats";
 import Teams from "./components/Teams.tsx";
 import TeamMatches from "./components/TeamMatches.tsx";
+import MatchInfo from "./components/MatchInfo.tsx";
 import TeamInfo from "./components/TeamInfo.tsx";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path={'stats'} element={<Stats/>}/>
           <Route path={'teams'} element={<Teams/>}/>
           <Route path={'teamMatches'} element={<TeamMatches/>}/>
+          <Route path={'matchInfo'} element={<MatchInfo/>}/>
           <Route path={'teamInfo'} element={<TeamInfo/>}/>
         </Routes>
       </div>

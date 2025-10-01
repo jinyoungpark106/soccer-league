@@ -29,7 +29,6 @@ const Teams = () => {
 
   const onClickTeam = (e: React.MouseEvent<HTMLDivElement>, id: number) => {
     e.preventDefault();
-    console.log(e, id);
     const selectedTeam = teams.filter(team => team.id === id);
     navigate("/teamInfo", {state: {team: selectedTeam[0]}});
   };
@@ -38,7 +37,6 @@ const Teams = () => {
     fetch(`${apiUrl}/api/getTeamData`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setTeams(data?.teamData?.teams ?? []);
       });
   }, []);
