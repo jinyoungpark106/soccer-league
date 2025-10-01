@@ -24,10 +24,10 @@ const MatchInfo = () => {
   }
 
   return (
-    <div className="min-h-screen p-4 text-[13px] md:text-base">
+    <div className="min-h-screen p-4 text-sm md:text-base">
       <Card className="bg-gray-800 w-90 md:w-2xl mt-6 mb-6">
-        <div className={'flex flex-1 text-gray-400'}>
-          <div className={'pr-2'}>{match.competition.name}</div> - <div className={'pl-2'}>{formatDate(match.utcDate)}</div>
+        <div className={'flex flex-1 text-gray-400 text-[11px] md:text-base'}>
+          <div className={'pr-2'}>{match.competition.name}</div> <div>-</div> <div className={'pl-2'}>{formatDate(match.utcDate)}</div>
         </div>
         <div className={'flex flex-1'}>
           <div className="flex flex-1 justify-center">
@@ -52,9 +52,9 @@ const MatchInfo = () => {
           <div className={'flex flex-1 justify-center'}>TEAM STATS</div>
           <div className={'flex flex-1 justify-end'}><img src={match.awayTeam.crest} alt={match.awayTeam.tla} className="w-5 h-5"/></div>
         </div>
-        {teamStats.map((team) => {
+        {teamStats.map((team: [string, number, number], i: number) => {
           return (
-            <div className={'flex flex-1 text-gray-400'}>
+            <div key={i} className={'flex flex-1 text-gray-400'}>
               <div className={'flex flex-1 justify-start pl-1'}>{team[1]}</div>
               <div className={'flex flex-1 justify-center'}>{team[0]}</div>
               <div className={'flex flex-1 justify-end pr-1'}>{team[2]}</div>
