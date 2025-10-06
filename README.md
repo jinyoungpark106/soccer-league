@@ -27,4 +27,4 @@ A web application that provides real-time information about the **English Premie
 
 📷 Preview
 
-![Portfolio Preview](./public/images/preview1.png)
+![Soccer Preview](./public/images/preview1.png)
