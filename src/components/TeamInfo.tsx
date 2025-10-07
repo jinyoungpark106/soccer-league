@@ -1,14 +1,21 @@
-import {useLocation, Navigate} from "react-router-dom";
-import { Card } from "flowbite-react";
+import {useLocation, Navigate, useNavigate} from "react-router-dom";
+import { Card, Button } from "flowbite-react";
 import type {SquadType} from "./Teams.tsx";
+import React from "react";
 
 const TeamInfo = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { team } = location.state || {};
 
   if (!team) {
     return <Navigate to="/teams" replace />;
   }
+
+  const onClickMatch = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    navigate(`/teamMatches?teamCode=${team.tla}`);
+  };
 
   return (
     <div className="min-h-screen p-4">
@@ -22,11 +29,14 @@ const TeamInfo = () => {
           </div>
           <div className={'text-center text-gray-400'}>{team.venue}</div>
           <div className="flow-root text-xs text-gray-400 mt-5 w-full">
-            <ul className="list-disc pl-5 mt-5">
-              <li>
-                <span>Coach - </span>{team.coach.name}
-              </li>
-            </ul>
+            <div className={'flex items-center justify-between'}>
+              <ul className="list-disc pl-5 mt-5">
+                <li>
+                  <span>Coach - </span>{team.coach.name}
+                </li>
+              </ul>
+              <Button className={'cursor-pointer'} size={'xs'} color={'light'} pill onClick={onClickMatch}>Match</Button>
+            </div>
             <ul className="divide-y divide-gray-700 mt-5">
               <li className="py-3">
                 <div>Squad</div>
